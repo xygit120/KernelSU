@@ -24,7 +24,7 @@ apksign {
 }
 
 android {
-    namespace = "YY.BingBing.xy"
+    namespace = "yy.xiaoye.bing"
 
     buildTypes {
         release {
