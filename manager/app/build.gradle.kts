@@ -16,18 +16,26 @@ val managerVersionCode: Int by rootProject.extra
 val managerVersionName: String by rootProject.extra
 val androidCmakeVersion: String by rootProject.extra
 
-apksign {
-    storeFileProperty = "KEYSTORE_FILE"
-    storePasswordProperty = "KEYSTORE_PASSWORD"
-    keyAliasProperty = "KEY_ALIAS"
-    keyPasswordProperty = "KEY_PASSWORD"
-}
 
 android {
     namespace = "me.weishu.kernelsu"
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("bilibili.jks") 
+            storePassword = "bilibili"
+            keyAlias = "bilibili"
+            keyPassword = "bilibili"
+            enableV1Signing = true
+            enableV2Signing = true
+            // enableV3Signing = false 
+            // enableV4Signing = false
+        }
+    }
+
     buildTypes {
         release {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = true
             isShrinkResources = true
             vcsInfo.include = false
